@@ -26,7 +26,7 @@ The script "DataCollection_team10" takes as input the url for negative/positive 
 
 ## Extra filtering on the script
 
-Since there were two criteria that cannot be obtained through the advanced search tool in UniProtKB, the resulting entries (2949 proteins) were additionally filtered by looking at the features on the json and filtering out the ones that were cleaved (the ones that have an empty space on the description of the signal peptide) and the ones that had the signal peptide shorter than 14 residues. The filtering was performed with the following function:
+Since there were two criteria that cannot be obtained through the advanced search tool in UniProtKB, the resulting entries (2949 proteins) were additionally filtered using the features on the json and retrieving the ones that were cleaved (identified by a characteristic empty space on the description of the signal peptide) and filtering out the ones with signal peptide shorter than 14 residues. The filtering was performed with the following function:
 
 ~~~
 def extract_fields(entry):
