@@ -190,7 +190,7 @@ def save_fasta_file(sequences_data, output_file_name):
 if __name__ == "__main__":
     # --- Positive Dataset ---
     print("--- Generating Positive Dataset ---")
-    # URL updated to explicitly request the sequence and other necessary fields
+    
     positive_url = "https://rest.uniprot.org/uniprotkb/search?format=json&query=%28%28fragment%3Afalse%29+AND+%28taxonomy_id%3A2759%29+AND+%28length%3A%5B40+TO+*%5D%29+AND+%28reviewed%3Atrue%29+AND+%28existence%3A1%29+AND+%28ft_signal_exp%3A*%29%29&size=500"
     positive_output_tsv = "positive_dataset_sp_cleavage.tsv"
     positive_output_fasta = "positive_dataset_sp_cleavage.fasta"
@@ -213,7 +213,7 @@ if __name__ == "__main__":
 
     # --- Negative Dataset ---
     print("\n--- Generating Negative Dataset ---")
-    # URL updated to explicitly request the sequence and other necessary fields
+    
     negative_url = "https://rest.uniprot.org/uniprotkb/search?format=json&query=%28%28fragment%3Afalse%29+AND+%28reviewed%3Atrue%29+AND+%28existence%3A1%29+AND+%28taxonomy_id%3A2759%29+AND+%28length%3A%5B40+TO+*%5D%29+AND+%28%28cc_scl_term_exp%3ASL-0091%29+OR+%28cc_scl_term_exp%3ASL-0191%29+OR+%28cc_scl_term_exp%3ASL-0173%29+OR+%28cc_scl_term_exp%3ASL-0209%29+OR+%28cc_scl_term_exp%3ASL-0204%29+OR+%28cc_scl_term_exp%3ASL-0039%29%29+NOT+%28ft_signal%3A*%29%29&size=500"
     negative_output_tsv = "negative_dataset.tsv"
     negative_output_fasta = "negative_dataset.fasta"
