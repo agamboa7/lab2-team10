@@ -77,11 +77,11 @@ The python script successfully generated the required datasets for the project, 
 * negative_dataset.tsv
 * negative_dataset.fasta
 
-## To run the script on your own
+## To run the script on your own:
 
-Make sure to have python3, download the `dataset_gathering.py` script and run the following on the command line:
+Make sure to have python3, download the `dataset_gathering.py` script, and run the following on the command line:
 
 ```bash
 python3 dataset_gathering.py
 ``` 
-- `-o`: 4 output files (TSV and FASTA files of positive and negative datasets)
+- `output`: 4 output files (2 TSV files and 2 FASTA files, one for positive set and one for negative datasets)
