@@ -84,4 +84,4 @@ Make sure to have python3, download the `dataset_gathering.py` script, and run t
 ```bash
 python3 dataset_gathering.py
 ``` 
-- `output`: 4 output files (2 TSV files and 2 FASTA files, one for positive set and one for negative datasets)
+- `output`: 4 output files (2 TSV files and 2 FASTA files, each for positive and negative datasets)
