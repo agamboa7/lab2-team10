@@ -85,3 +85,12 @@ Make sure to have python3, download the `dataset_gathering.py` script, and run t
 python3 dataset_gathering.py
 ``` 
 - `output`: 4 output files (2 TSV files and 2 FASTA files, each for positive and negative datasets)
+
+
+## Summary table
+
+| Dataset         | Number of Proteins | Metazoa | Plants | Fungi | Other | Proteins with N-terminal TMH |
+|-----------------|--------------------|---------|--------|-------|-------|------------------------------|
+| Positive        | 2932                 | 2420      | 311     | 165    | 36    | N/A                          |
+| Negative        | 20615                 | 12419      | 4111     | 3727    | 358    | 2477                           |
+
