@@ -8,9 +8,7 @@ To get these results we performed the following steps:
 - As input, we used the `positive_dataset_sp_cleavage.fasta` and `negative_dataset.fasta` files.
 - The specific MMseqs2 command used was:
   ```bash
-  # [Insert your MMseqs2 clustering script/command here, e.g.,]
-  # mmseqs easy-cluster positive_dataset_sp_cleavage.fasta pos_cluster tmp --min-seq-id 0.9 --cluster-mode 0
-  # mmseqs easy-cluster negative_dataset.fasta neg_cluster tmp --min-seq-id 0.9 --cluster-mode 0
+  mmseqs easy-cluster input.fa cluster-results tmp --min-seq-id 0.3 \-c 0.4 --cov-mode 0 --cluster-mode 1
   ```
 - After MMseqs2 finished, we retrieved the resulting `.tsv` files (`pos_cluster-results_cluster.tsv` and `neg_cluster-results_cluster.tsv`) from the VM to complete the rest of the analysis on Colab.
 
