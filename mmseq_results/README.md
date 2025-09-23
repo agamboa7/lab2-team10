@@ -1,4 +1,4 @@
-# README
+# Clustering and Data Preparation
 
 To get these results we performed the following steps:
 
