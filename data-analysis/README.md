@@ -19,7 +19,15 @@ The programming tools that were used include Pandas (to create the data frames f
 
 ## Taxonomic Classification
 
-...
+We produced two pie charts (one for training set and one for test set) in order to compare the composition percentages at kingdom level in both sets. The resulting percentages are shown in the following table, showing that the distributions of kingdoms in both sets are consistent:
+
+| Kingdom  | Train Set (%) | Test Set (%) |
+|----------|---------------|--------------|
+| Metazoa  | 55.4          | 55.9         |
+| Fungi    | 25.7          | 25.5         |
+| Plants   | 17.0          | 16.6         |
+| Other    | 2.0           | 1.9          |
+
 
 ## Sequence Logos
 
