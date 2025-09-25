@@ -4,3 +4,24 @@ This part of the project was carried out in order to analyze and compare the dis
 
 The programming tools that were used include Pandas (to create the data frames for further analysis) and Seaborn (to produce graphs that facilitate statistical data visualization). 
 
+
+## Distribution of Protein Lenghts
+
+...
+
+## Distribution of SP Lengths
+
+...
+
+## Amino-acid Composition
+
+...
+
+## Taxonomic Classification
+
+...
+
+## Sequence Logos
+
+...
+
