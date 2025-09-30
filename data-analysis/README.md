@@ -11,7 +11,7 @@ To represent the distribution of protein lengths in the positive vs the negative
 
 [Click here to access the density plot of protein lengths in the whole dataset](https://github.com/agamboa7/lab2-team10/blob/main/data-analysis/plots/Density_Plot_of_Protein_Lengths_In_The_Whole_Dataset.png)
 
-[Click here to access the density_plot_of_protein_lengths_in_train_and_test_sets]([https://github.com/agamboa7/lab2-team10/blob/main/data-analysis/plots/Density_Plot_of_Protein_Lengths_In_The_Whole_Dataset.png](https://github.com/agamboa7/lab2-team10/blob/main/data-analysis/plots/Density_Plot_of_Protein_Lengths_in_Train_and_Test_sets.png))
+[Click here to access the density_plot_of_protein_lengths_in_train_and_test_sets](https://github.com/agamboa7/lab2-team10/blob/main/data-analysis/plots/Density_Plot_of_Protein_Lengths_in_Train_and_Test_sets.png)
 
 [Click here to access the density_plot_of_protein_lengths_in_train_set](https://github.com/agamboa7/lab2-team10/blob/main/data-analysis/plots/Density_Plot_of_Protein_Lengths_in_Train_Set.png)
 
