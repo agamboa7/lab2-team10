@@ -13,6 +13,8 @@ To represent the distribution of protein lengths in the positive vs the negative
 ## Distribution of SP Lengths
 To represent the distribution of protein lengths in signal peptides we used a histogram in the Seaborn library, plotting the cleavage site position on the x-axis against the density on the y-axis. A histogram is a classic visualization tool that represents the distribution of one or more variables by counting the number of observations that fall within discrete bins.
 
+[Click here to access the density plot of protein lengths in the whole dataset](https://github.com/agamboa7/lab2-team10/blob/main/data-analysis/plots/Density_Plot_of_Protein_Lengths_In_The_Whole_Dataset.png)
+
 
 ## Amino-acid Composition
 The amino-acid composition of the signal peptides was compared against the amino acid composition of Swiss-prot, used as the background distribution. The amino acid composition of SwissProt is available at https://web.expasy.org/docs/relnotes/relstat.html
