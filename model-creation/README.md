@@ -12,7 +12,9 @@ Table with the final performance metric values:
 
 
 
-![The Averaged Precision-Recall Curve](averaged_precision_recall_curve.png)
+
+<img src="averaged_precision_recall_curve.png" alt="The Averaged Precision-Recall Curve" width="60%" align="left">
 
 
-![The Heatmap Vision of the PSWM Matrix](pswm_heatmap.png)
+
+<img src="pswm_heatmap.png" alt="The Heatmap Vision of the PSWM Matrix" width="50%" align="left">
