@@ -9,3 +9,10 @@ Table with the final performance metric values:
 | Recall (Mean ± SE)        | 0.7061 ± 0.0345 |
 | Avg Threshold (Mean ± SE) | 6.7312 ± 0.1567 |
 | MCC (Mean ± SE)           | 0.6942 ± 0.0158 |
+
+
+
+![The Averaged Precision-Recall Curve](averaged_precision_recall_curve.png)
+
+
+![The Heatmap Vision of the PSWM Matrix](pswm_heatmap.png)
