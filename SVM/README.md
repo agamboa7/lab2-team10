@@ -7,7 +7,7 @@ This script builds a pipeline to classify proteins based on the presence of a si
 - [Script Overview](#script-overview)
 - [Pipeline Steps](#pipeline-steps)
 - [Generated Files](#generated-files)
-- [Key Results from this Session](#key-results-from-this-session)
+- [Results](#key-results-from-this-session)
 
 ## Script Overview
 
