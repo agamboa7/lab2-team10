@@ -38,6 +38,15 @@ Executing this script will produce the following output files in the working dir
 
 ## Key Results from this Session
 
+| Classification | precision | recall | f1-score | support |
+| :--- | :--- | :--- | :--- | :--- |
+| **Negative (0)** | 0.98 | 0.98 | 0.98 | 1787 |
+| **Positive (1)** | 0.87 | 0.85 | 0.86 | 219 |
+| | | | | |
+| **accuracy** | | | 0.97 | 2006 |
+| **macro avg** | 0.93 | 0.92 | 0.92 | 2006 |
+| **weighted avg** | 0.97 | 0.97 | 0.97 | 2006 |
+
 The following plots summarize the main outcomes of this implementation step: the ranking of features, and the performance of the final, optimized SVM model on the test set.
 
 <img src="Feature Importences from Random Forest.png" alt="Feature Importences from Random Forest" width="60%">
