@@ -51,4 +51,6 @@ The following plots summarize the main outcomes of this implementation step: the
 
 <img src="Feature Importences from Random Forest.png" alt="Feature Importences from Random Forest" width="60%">
 
+<img src="Confusion Matrix on Test Set.png" alt="COnfusion Matrix" width="60%">
+
 <img src="Roc Curve.png" alt="Roc Curve" width="60%">
