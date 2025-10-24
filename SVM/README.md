@@ -54,3 +54,48 @@ The following plots summarize the main outcomes of this implementation step: the
 <img src="Confusion Matrix on Test Set.png" alt="COnfusion Matrix" width="60%">
 
 <img src="Roc Curve.png" alt="Roc Curve" width="60%">
+
+
+### Model Performance Comparison
+
+#### 1. False Positive Rate (FPR) on Transmembrane Proteins
+
+A key challenge is distinguishing signal peptides from the N-terminal anchor helices of transmembrane (TM) proteins, as both are hydrophobic. A lower FPR on this subset indicates a better model.
+
+| Metric | SVM Model | Von Heijne Model |
+| :--- | :--- | :--- |
+| **Standard FPR (Overall)** | **`0.0151`** | `0.0330` |
+| **FPR on TM Proteins** | **`0.1273`** | `0.2061` |
+| False Positives from TM Subset | **`21`** / 165 | `34` / 165 |
+
+> **Conclusion**: The **SVM model is significantly better** at correctly identifying transmembrane N-termini as negative. Its specialized FPR is much lower, suggesting it learned features that can more effectively distinguish between TM anchors and true signal peptides.
+
+#### 2. Analysis of Misclassified Sequences
+
+This analysis examines the average physicochemical properties of sequences that were misclassified by each model. The "h-region hydrophobicity" is the most critical feature for signal peptide recognition.
+
+##### SVM Model: Error Analysis
+
+| Prediction Outcome | Avg. n-region Charge | Avg. h-region Hydrophobicity | Count |
+| :--- | :---: | :---: | :---: |
+| **True Positives** | 0.545 | `2.183` | 187 |
+| **False Negatives** | 0.219 | `0.330` | 32 |
+| **True Negatives** | -0.005 | `-0.478`| 1760 |
+| **False Positives** | 0.407 | `2.044` | 27 |
+
+*   **Key Insight (False Positives)**: The SVM's false positives have an extremely high hydrophobicity (`2.044`), which is nearly identical to that of true positives (`2.183`). This shows the model is primarily confused by sequences that strongly mimic a signal peptide's hydrophobic core.
+*   **Key Insight (False Negatives)**: The model misses true signal peptides that have unusually low hydrophobicity (`0.330`), making them atypical.
+
+##### Von Heijne Model: Error Analysis
+
+| Prediction Outcome | Avg. n-region Charge | Avg. h-region Hydrophobicity | Count |
+| :--- | :---: | :---: | :---: |
+| **True Positives** | 0.481 | `1.969` | 154 |
+| **False Negatives** | 0.538 | `1.778` | 65 |
+| **True Negatives** | 0.000 | `-0.459`| 1728 |
+| **False Positives** | 0.034 | `0.120` | 59 |
+
+*   **Key Insight (False Positives)**: The Von Heijne model's false positives have only a slightly elevated hydrophobicity (`0.120`) compared to true negatives. This suggests its errors are caused by more subtle sequence patterns rather than just high hydrophobicity.
+*   **Key Insight (False Negatives)**: The model struggles with a larger number of signal peptides (`65`) that have a hydrophobicity (`1.778`) only slightly lower than the average true positive.
+
+
