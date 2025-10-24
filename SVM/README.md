@@ -1,9 +1,3 @@
-Of course. All image paths in the README have been updated to include the `plots/` directory prefix.
-
-Here is the revised file:
-
----
-
 # SVM with Feature Selection
 
 This script builds a pipeline to classify proteins based on the presence of a signal peptide (SP), focusing on the implementation and optimization of a Support Vector Machine (SVM).
