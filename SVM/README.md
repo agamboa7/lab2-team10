@@ -9,9 +9,11 @@ This script builds a pipeline to classify proteins based on the presence of a si
 - [Generated Files](#generated-files)
 - [Results](#key-results-from-this-session)
 
-## Script Overview
+## Overview
 
-The goal of this script is to apply advanced machine learning techniques to the signal peptide classification problem. The script takes the pre-processed dataset (`merged_dataset_with_seqs.tsv`) and executes a pipeline that includes feature engineering, feature selection, hyperparameter tuning, model evaluation, and final model persistence. This represents the culmination of the modeling phase of the course project.
+The goal of the `SVM.py` script is to apply advanced machine learning techniques to the signal peptide classification problem. The script takes the pre-processed dataset (`merged_dataset_with_seqs.tsv`) and executes a pipeline that includes feature engineering, feature selection, hyperparameter tuning, model evaluation, and final model persistence. This represents the culmination of the modeling phase of the course project. 
+
+Afterwards, the `model_comparison.py` script compares the performance of the newly created SVM model with the previous von Heijne model. Spesifically, we compare their performance on classifying transmembrane proteins.
 
 ## Pipeline Steps
 
