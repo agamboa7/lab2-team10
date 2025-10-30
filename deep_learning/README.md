@@ -66,7 +66,6 @@ This directory also contains scripts for comparing the deep learning model with 
 - `SVM.py`: Implementation of an SVM classifier.
 - `vonHeijne.py`: Implementation of the Von Heijne algorithm.
 - `complete_comparison.py`: To run comparison and generate a report.
-- `final_model_comparison_report.md`: A markdown file summarizing the final comparison results.
 
 ## Results
 
@@ -136,4 +135,5 @@ The final model performance is evaluated on the hold-out test set. The script wi
 - **Total Negative TM Proteins:** 165
 - **False Positives from TM subset:** 34
 - **FPR for Transmembrane proteins:** `0.2061`
+
 
