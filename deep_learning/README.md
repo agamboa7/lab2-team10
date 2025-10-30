@@ -7,7 +7,6 @@ This directory contains the code for building, training, and evaluating a deep l
 - [Pipeline Steps](#pipeline-steps)
 - [Model Architecture](#model-architecture)
 - [How to Run](#how-to-run)
-- [Generated Files](#generated-files)
 - [Results](#results)
 
 ## Overview
@@ -62,18 +61,11 @@ python deep_learning.py
 ```
 The script expects the dataset file (`merged_dataset_with_seqs.tsv`) to be in a specific path. You may need to adjust the `FILE_PATH` variable in the `Config` class within the script to point to the correct location.
 
-## Generated Files
-
-Executing this script will produce the following output files:
-
-*   `best_signal_peptide_model.pth`: The saved weights of the best performing model.
-*   **Console Output**: A detailed classification report including precision, recall, F1-score, and MCC for the test set.
-*   **Plots**: The script will display plots for the Confusion Matrix, ROC Curve, and Precision-Recall Curve during execution.
 
 This directory also contains scripts for comparing the deep learning model with other approaches:
 - `SVM.py`: Implementation of an SVM classifier.
 - `vonHeijne.py`: Implementation of the Von Heijne algorithm.
-- `SVM_DL_comparison.py`, `SVM_vonHeijne_comparison.py`, `complete_comparison.py`: Scripts to run comparisons and generate reports.
+- `complete_comparison.py`: To run comparison and generate a report.
 - `final_model_comparison_report.md`: A markdown file summarizing the final comparison results.
 
 ## Results
@@ -87,6 +79,19 @@ The final model performance is evaluated on the hold-out test set. The script wi
 ![Precision-Recall Curve](plots/precision_recall_curve.png)
 
 
+## Model Comparisons
+
+### DL Model: Classification Report
+| Metric          | Precision | Recall | F1-Score | Support |
+|-----------------|-----------|--------|----------|---------|
+| **Negative**       | 0.99      | 0.99   | 0.99     | 1787.0      |
+| **Positive**       | 0.94      | 0.93   | 0.93     | 219.0      |
+|-----------------|-----------|--------|----------|---------|
+| **Accuracy**      |           |        | 0.99     | 2006.0      |
+| **Macro Avg**     | 0.96      | 0.96   | 0.96     | 2006.0      |
+| **Weighted Avg**  | 0.99      | 0.99   | 0.99     | 2006.0      |
+
+
 
 ### SVM Model: Classification Report
 | Metric          | Precision | Recall | F1-Score | Support |
@@ -98,42 +103,37 @@ The final model performance is evaluated on the hold-out test set. The script wi
 | **Macro Avg**     | 0.93      | 0.92   | 0.92     | 2006.0      |
 | **Weighted Avg**  | 0.97      | 0.97   | 0.97     | 2006.0      |
 
-### Deep Learning Model: Classification Report
+
+
+### Von_Heijne Model: Classification Report
 | Metric          | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
-| **Negative**       | 0.99      | 0.99   | 0.99     | 1787.0      |
-| **Positive**       | 0.94      | 0.93   | 0.93     | 219.0      |
+| **Negative**       | 0.96      | 0.97   | 0.97     | 1787.0      |
+| **Positive**       | 0.72      | 0.70   | 0.71     | 219.0      |
 |-----------------|-----------|--------|----------|---------|
-| **Accuracy**      |           |        | 0.99     | 2006.0      |
-| **Macro Avg**     | 0.96      | 0.96   | 0.96     | 2006.0      |
-| **Weighted Avg**  | 0.99      | 0.99   | 0.99     | 2006.0      |
+| **Accuracy**      |           |        | 0.94     | 2006.0      |
+| **Macro Avg**     | 0.84      | 0.84   | 0.84     | 2006.0      |
+| **Weighted Avg**  | 0.94      | 0.94   | 0.94     | 2006.0      |
 
-### SVM Model: Transmembrane Protein Analysis
-- **Total Negative TM Proteins:** 165
-- **False Positives from TM subset:** 21
-- **FPR for Transmembrane proteins:** `0.1273`
+
+
+## Transmembrane Protein Analysis
+
 
 ### DL Model: Transmembrane Protein Analysis
 - **Total Negative TM Proteins:** 165
 - **False Positives from TM subset:** 6
 - **FPR for Transmembrane proteins:** `0.0364`
 
-### SVM Model: Misclassification Analysis
-- **Average H-region Hydrophobicity of True Positives:** `2.183`
-- **Average H-region Hydrophobicity of FALSE NEGATIVES:** `0.330`
-- **Average H-region Hydrophobicity of FALSE POSITIVES:** `2.044`
 
-**Interpretation:**
-- FN hydrophobicity is lower than TP, suggesting the model misses less canonical (less hydrophobic) signal peptides.
-- FP hydrophobicity > 0 suggests the model is confused by hydrophobic N-termini (like TM anchors).
+### SVM Model: Transmembrane Protein Analysis
+- **Total Negative TM Proteins:** 165
+- **False Positives from TM subset:** 21
+- **FPR for Transmembrane proteins:** `0.1273`
 
-### DL Model: Misclassification Analysis
-- **Average H-region Hydrophobicity of True Positives:** `1.999`
-- **Average H-region Hydrophobicity of FALSE NEGATIVES:** `0.731`
-- **Average H-region Hydrophobicity of FALSE POSITIVES:** `1.297`
 
-**Interpretation:**
-- FN hydrophobicity is lower than TP, suggesting the model misses less canonical (less hydrophobic) signal peptides.
-- FP hydrophobicity > 0 suggests the model is confused by hydrophobic N-termini (like TM anchors).
-
+### Von_Heijne Model: Transmembrane Protein Analysis
+- **Total Negative TM Proteins:** 165
+- **False Positives from TM subset:** 34
+- **FPR for Transmembrane proteins:** `0.2061`
 
