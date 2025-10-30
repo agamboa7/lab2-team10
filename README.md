@@ -55,8 +55,8 @@ Signal peptides are short amino acid sequences (typically 14-30 residues) locate
 graph LR
     A[" Data Collection"] --> B[" Preprocessing"]
     B --> C["Analysis"]
-    C --> D["Statistical Modeling"]
-    C --> E["Classical ML (SVM)"]
+    C --> D["von Heijne Method"]
+    C --> E["Support Vector Machine"]
     C --> F["Deep Learning (CNN+BiLSTM)"]
     D --> G["Model Evaluation"]
     E --> G
@@ -71,7 +71,7 @@ graph LR
 ```
 📦 lab2-team10/
 │
-├── 📁 data-collection/       # Phase A — UniProt API integration
+├── 📁 data-collection/        # Phase A — UniProt API integration
 ├── 📁 mmseq_results/          # Phase B — Clustering & redundancy reduction
 ├── 📁 data-analysis/          # Phase C — Exploratory analysis & visualization
 ├── 📁 model-creation/         # Phase D — Von Heijne statistical model
