@@ -1,5 +1,7 @@
+Of course. Here is the updated README with all deep learning-related content removed:
+
 # lab2-team10
-This repository contains material relevant to the Laboratory of Bioinformatics 2 course, which is part of the Bioinformatics Master's Degree at the University of Bologna. 
+This repository contains material relevant to the Laboratory of Bioinformatics 2 course, which is part of the Bioinformatics Master's Degree at the University of Bologna.
 
 **Team Members:**
 - Andrea Arriola Gamboa
@@ -8,13 +10,9 @@ This repository contains material relevant to the Laboratory of Bioinformatics 2
 - Betül Yalçın
 - Deniz Ertuğrul
 
-
-
-
-
 # Signal Peptide Detection: Machine Learning Pipeline
 
-This repository contains a comprehensive machine learning pipeline for predicting signal peptides (SP) in eukaryotic protein sequences. The project compares multiple approaches including the classic von Heijne algorithm, Support Vector Machines (SVM), and Deep Learning models.
+This repository contains a comprehensive machine learning pipeline for predicting signal peptides (SP) in eukaryotic protein sequences. The project compares multiple approaches including the classic von Heijne algorithm and Support Vector Machines (SVM).
 
 ---
 
@@ -57,10 +55,8 @@ graph LR
     B --> C["Analysis"]
     C --> D["von Heijne Method"]
     C --> E["Support Vector Machine"]
-    C --> F["Deep Learning (CNN+BiLSTM)"]
     D --> G["Model Evaluation"]
     E --> G
-    F --> G
     G --> H["Deployment"]
 ````
 
@@ -75,11 +71,8 @@ graph LR
 ├── 📁 mmseq_results/          # Phase B — Clustering & redundancy reduction
 ├── 📁 data-analysis/          # Phase C — Exploratory analysis & visualization
 ├── 📁 model-creation/         # Phase D — Von Heijne statistical model
-├── 📁 SVM/                    # Phase E — Support Vector Machine
-└── 📁 deep_learning/          # Phase F — CNN + BiLSTM deep learning
+└── 📁 SVM/                    # Phase E — Support Vector Machine
 ```
-
-</details>
 
 ---
 
@@ -87,26 +80,24 @@ graph LR
 
 ### Model Comparison Summary
 
-| Metric | Von Heijne | SVM | Deep Learning |
-|--------|-----------|-----|---------------|
-| **Overall Accuracy** | 0.94 | 0.97 | **0.99** |
-| **F1 Score (Positive)** | 0.71 | 0.86 | **0.93** |
-| **Precision (Positive)** | 0.72 | 0.87 | **0.94** |
-| **Recall (Positive)** | 0.70 | 0.85 | **0.93** |
-| **MCC** | 0.694 | 0.847 | **0.92** |
-| **FPR on TM Proteins** | 0.206 | 0.127 | **0.036** |
+| Metric | Von Heijne | SVM |
+|--------|-----------|-----|
+| **Overall Accuracy** | 0.94 | **0.97** |
+| **F1 Score (Positive)** | 0.71 | **0.86** |
+| **Precision (Positive)** | 0.72 | **0.87** |
+| **Recall (Positive)** | 0.70 | **0.85** |
+| **MCC** | 0.694 | **0.847** |
+| **FPR on TM Proteins** | 0.206 | **0.127** |
 
 ### Key Findings
 
-1. **Deep Learning dominates:** CNN-BiLSTM achieves highest accuracy (99%) and best handling of transmembrane proteins (FPR: 3.6%)
+1. **SVM is the top performer:** It achieves the highest accuracy (97%) and best handles transmembrane proteins (FPR: 12.7%).
 
-2. **SVM strong middle-ground:** Good performance (97% accuracy) with fast training and interpretable features
+2. **Von Heijne is a competitive baseline:** The traditional method achieves 94% accuracy and serves as a useful reference.
 
-3. **Von Heijne still competitive:** Traditional method achieves 94% accuracy, useful as baseline/reference
+3. **TM protein challenge:** Both models struggle more with TM proteins (higher false positive rate) due to similar N-terminal hydrophobicity. SVM mitigates this most effectively.
 
-4. **TM protein challenge:** All models struggle more with TM proteins (higher false positive rate) due to similar N-terminal hydrophobicity. Deep learning best mitigates this.
-
-5. **Feature importance:** Hydrophobicity and TM propensity are top predictive features, confirming biological understanding of SP structure
+4. **Feature importance:** Hydrophobicity and TM propensity are the top predictive features for the SVM model, confirming the biological understanding of SP structure.
 
 ---
 
@@ -384,73 +375,6 @@ GridSearchCV(
 
 ---
 
-### Phase F Deep Learning
-
-<details>
-<summary><b>deep_learning/</b> — CNN + BiLSTM neural network</summary>
-
-**Scripts:** `deep_learning.py` | `complete_comparison.py`
-
-#### Model Architecture:
-
-```
-Input: Protein Sequence (variable length)
-    ↓
-One-Hot Encoding: 20 × 70 tensor (padded/truncated)
-    ↓
-CNN Layer:
-   • 64 filters | Kernel size: 17
-   • Local motif extraction
-   • ReLU + BatchNorm
-    ↓
-Bi-LSTM Layers:
-   • 2 layers | 128 hidden units each
-   • Long-range dependencies (bidirectional)
-   • Dropout: 0.5
-    ↓
-Fully Connected:
-   • Flatten → 256 → 128 → 1
-   • Dropout between layers
-    ↓
-Output: Sigmoid (probability)
-```
-
-#### Training Configuration:
-
-| Setting            | Value                               |
-| ------------------ | ----------------------------------- |
-| **Data Split**     | 80% train / 10% val / 10% test      |
-| **Loss**           | Binary Crossentropy + class weights |
-| **Optimizer**      | Adam (default LR)                   |
-| **Early Stopping** | Patience=15 epochs (validation MCC) |
-| **Batch Size**     | 32                                  |
-| **Max Epochs**     | 100 (typically stops ~50)           |
-
-#### Test Performance:
-
-| Class             | Precision | Recall | F1-Score |
-| ----------------- | --------- | ------ | -------- |
-| Negative          | 0.99      | 0.99   | 0.99     |
-| Positive          | 0.94      | 0.93   | 0.93     |
-| **Overall (Acc)** |           |        | **0.99** |
-| **MCC**           |           |        | **0.92** |
-
-#### TM Protein Analysis (Best in Class):
-
-* TM negatives in test: 165
-* False positives: **6 / 165**
-* **FPR: 0.036** ← **WINNER**
-
-#### Outputs:
-
-* `best_signal_peptide_model.pth`
-* Confusion matrix, ROC, PR curve plots
-
-</details>
-
----
-
-
 ## Dependencies
 
 ### Core Libraries
@@ -458,7 +382,6 @@ Output: Sigmoid (probability)
 - **pandas**: Data manipulation and analysis
 - **NumPy**: Numerical computing
 - **scikit-learn**: Machine learning (SVM, RandomForest, metrics)
-- **PyTorch**: Deep learning framework
 - **Matplotlib & Seaborn**: Visualization
 - **Requests**: HTTP API client
 
