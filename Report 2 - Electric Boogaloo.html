@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 SIGNAL PEPTIDE DETECTION - EXPLOSIVE EDITION 💥</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Press+Start+2P&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        @keyframes explode {
+            0% { transform: scale(0.9); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+
+        @keyframes neon-flicker {
+            0%, 100% { opacity: 1; text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff; }
+            50% { opacity: 0.8; text-shadow: 0 0 5px #ff00ff; }
+        }
+
+        @keyframes rotate-3d {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0, #ff0080);
+            background-size: 400% 400%;
+            animation: rainbow 8s ease infinite;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .firework {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 10px solid #fff;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        header::before {
+            content: '🎆🎇✨💫⚡🔥💥🌟';
+            position: absolute;
+            font-size: 4em;
+            top: 20px;
+            animation: float 3s ease-in-out infinite;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        header h1 {
+            font-family: 'Bangers', cursive;
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            animation: explode 1s ease infinite, neon-flicker 2s ease-in-out infinite;
+            text-shadow: 0 0 20px #fff, 0 0 40px #ff00ff, 0 0 60px #ff00ff, 0 0 80px #ff00ff;
+            letter-spacing: 8px;
+            color: #fff;
+        }
+
+        header p {
+            font-size: 1.8em;
+            font-weight: bold;
+            text-shadow: 0 0 10px #000;
+            animation: pulse 2s ease infinite;
+        }
+
+        .explosion-text {
+            display: inline-block;
+            animation: shake 0.5s ease infinite;
+        }
+
+        .team-info {
+            background: rgba(0,0,0,0.5);
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 20px;
+            border: 5px solid #fff;
+            box-shadow: 0 0 30px #ff00ff;
+            animation: pulse 3s ease infinite;
+        }
+
+        .team-info h3 {
+            font-family: 'Bangers', cursive;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #fff;
+        }
+
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .team-member {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: float 2s ease-in-out infinite;
+            border: 3px solid #fff;
+        }
+
+        .team-member:nth-child(2) { animation-delay: 0.2s; }
+        .team-member:nth-child(3) { animation-delay: 0.4s; }
+        .team-member:nth-child(4) { animation-delay: 0.6s; }
+        .team-member:nth-child(5) { animation-delay: 0.8s; }
+
+        nav {
+            background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0);
+            padding: 25px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 5px solid #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.3em;
+            text-shadow: 0 0 10px #000;
+            transition: all 0.3s;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        nav a:hover {
+            transform: scale(1.2) rotate(5deg);
+            background: rgba(255,255,255,0.3);
+            box-shadow: 0 0 20px #fff;
+        }
+
+        .content {
+            padding: 60px 40px;
+            background: rgba(0,0,0,0.7);
+            margin: 40px;
+            border-radius: 30px;
+            border: 5px solid #fff;
+            box-shadow: 0 0 50px rgba(255,0,255,0.5);
+        }
+
+        section {
+            margin-bottom: 80px;
+            animation: explode 2s ease infinite;
+        }
+
+        h2 {
+            font-family: 'Bangers', cursive;
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #ff00ff, #00ffff, #ffff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255,0,255,0.5);
+            letter-spacing: 5px;
+            animation: neon-flicker 1.5s ease-in-out infinite;
+        }
+
+        h3 {
+            font-family: 'Bangers', cursive;
+            font-size: 2.2em;
+            margin: 40px 0 20px 0;
+            color: #ffff00;
+            text-shadow: 0 0 20px #ff00ff, 0 0 10px #ff00ff;
+        }
+
+        h4 {
+            font-size: 1.5em;
+            color: #00ffff;
+            text-shadow: 0 0 10px #fff;
+            margin: 20px 0 10px 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            padding: 30px;
+            border-radius: 20px;
+            border: 5px solid #ffff00;
+            margin: 30px 0;
+            box-shadow: 0 0 40px rgba(255,255,0,0.8), inset 0 0 20px rgba(255,255,255,0.3);
+            animation: pulse 3s ease infinite;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 30px;
+            border-radius: 20px;
+            border: 5px solid #fff;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .info-card:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 50px #ffff00;
+        }
+
+        .info-card h4 {
+            margin-top: 0;
+            font-size: 1.8em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 30px 0;
+            box-shadow: 0 0 40px rgba(255,0,255,0.8);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-weight: 900;
+            font-size: 1.3em;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #000;
+        }
+
+        td {
+            padding: 18px;
+            background: rgba(255,255,255,0.1);
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: rgba(255,0,255,0.3);
+            transform: scale(1.02);
+        }
+
+        .metric-best {
+            font-weight: 900;
+            color: #00ff00;
+            text-shadow: 0 0 20px #00ff00, 0 0 10px #00ff00;
+            font-size: 1.4em;
+            animation: neon-flicker 1s ease-in-out infinite;
+        }
+
+        .pipeline-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #ff0080);
+            border-radius: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+            border: 5px solid #fff;
+            box-shadow: 0 0 50px rgba(255,255,0,0.8);
+        }
+
+        .pipeline-step {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 25px 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            font-weight: 900;
+            font-size: 1.3em;
+            color: #fff;
+            flex: 1;
+            min-width: 180px;
+            text-align: center;
+            border: 4px solid #ffff00;
+            animation: pulse 2s ease infinite;
+            text-shadow: 0 0 10px #000;
+        }
+
+        .pipeline-arrow {
+            font-size: 3em;
+            animation: pulse 1s ease infinite;
+            text-shadow: 0 0 20px #fff;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .stat-box {
+            flex: 1;
+            min-width: 220px;
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(255,0,255,0.8);
+            border: 5px solid #ffff00;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .stat-number {
+            font-family: 'Bangers', cursive;
+            font-size: 4em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px #fff;
+            animation: neon-flicker 2s ease-in-out infinite;
+        }
+
+        .stat-label {
+            font-size: 1.2em;
+            font-weight: bold;
+            text-shadow: 0 0 10px #000;
+        }
+
+        .conclusion {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            padding: 50px;
+            border-radius: 30px;
+            margin-top: 60px;
+            border: 8px solid #ffff00;
+            box-shadow: 0 0 60px rgba(255,255,0,1), inset 0 0 30px rgba(255,255,255,0.3);
+            animation: pulse 3s ease infinite;
+        }
+
+        .conclusion h3 {
+            margin-top: 0;
+            font-size: 2.8em;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #000 0%, #434343 100%);
+            text-align: center;
+            padding: 50px;
+            margin-top: 60px;
+            border-top: 10px solid #fff;
+            font-size: 1.3em;
+            text-shadow: 0 0 10px #ff00ff;
+        }
+
+        footer p {
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .emoji-explosion {
+            font-size: 2em;
+            display: inline-block;
+            animation: shake 0.5s ease infinite;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            .content {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .pipeline-flow {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>
+                <span class="explosion-text">💥 SIGNAL PEPTIDE 💥</span><br>
+                <span class="explosion-text">🔥 DETECTION MADNESS 🔥</span>
+            </h1>
+            <p>🚀 EXTREME MACHINE LEARNING EDITION 🚀</p>
+            <div class="team-info">
+                <h3>⚡ TEAM 10 MEGA SQUAD ⚡</h3>
+                <div class="team-members">
+                    <span class="team-member">🎯 Andrea Arriola Gamboa</span>
+                    <span class="team-member">🎯 Kristina Djikic</span>
+                    <span class="team-member">🎯 Başak Akkoyun</span>
+                    <span class="team-member">🎯 Betül Yalçın</span>
+                    <span class="team-member">🎯 Deniz Ertuğrul</span>
+                </div>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#overview">💫 OVERVIEW</a></li>
+                <li><a href="#pipeline">🎢 PIPELINE</a></li>
+                <li><a href="#data">📊 DATA BLAST</a></li>
+                <li><a href="#methods">🔬 METHODS</a></li>
+                <li><a href="#results">🏆 RESULTS</a></li>
+                <li><a href="#conclusion">💎 CONCLUSION</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <section id="overview">
+                <h2>🌟 PROJECT OVERVIEW 🌟</h2>
+                
+                <div class="highlight-box">
+                    <h3>🧬 WHAT ARE SIGNAL PEPTIDES?! 🧬</h3>
+                    <p style="font-size: 1.2em; line-height: 1.8;">Signal peptides are SHORT but MIGHTY amino acid sequences (14-30 residues) at the N-terminus! They're like MOLECULAR ZIP CODES that tell proteins WHERE TO GO! 📬✨ They direct proteins to the endoplasmic reticulum for secretion or membrane insertion, then GET CHOPPED OFF! ✂️💥</p>
+                </div>
+
+                <h3>🎯 WHY THIS MATTERS - IT'S HUGE! 🎯</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h4><span class="emoji-explosion">🧬</span> Protein Localization</h4>
+                        <p style="font-size: 1.1em;">TRACK WHERE PROTEINS GO INSIDE CELLS! It's like GPS for molecules! 📍</p>
+                    </div>
+                    <div class="info-card">
+                        <h4><span class="emoji-explosion">🔬</span> Secretome Analysis</h4>
+                        <p style="font-size: 1.1em;">DECODE the composition of SECRETED PROTEINS! Unlock cellular secrets! 🔓</p>
+                    </div>
+                    <div class="info-card">
+                        <h4><span class="emoji-explosion">💊</span> Drug Discovery</h4>
+                        <p style="font-size: 1.1em;">FIND therapeutic targets for LIFE-SAVING MEDICINES! 💉✨</p>
+                    </div>
+                    <div class="info-card">
+                        <h4><span class="emoji-explosion">🧪</span> Protein Engineering</h4>
+                        <p style="font-size: 1.1em;">DISTINGUISH transmembrane from secreted proteins! PRECISION SCIENCE! 🎯</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="pipeline">
+                <h2>🎢 PIPELINE ARCHITECTURE 🎢</h2>
+                
+                <div class="pipeline-flow">
+                    <div class="pipeline-step">🔥 DATA COLLECTION</div>
+                    <span class="pipeline-arrow">➡️</span>
+                    <div class="pipeline-step">⚡ PREPROCESSING</div>
+                    <span class="pipeline-arrow">➡️</span>
+                    <div class="pipeline-step">📈 ANALYSIS</div>
+                    <span class="pipeline-arrow">➡️</span>
+                    <div class="pipeline-step">🤖 MODELING</div>
+                    <span class="pipeline-arrow">➡️</span>
+                    <div class="pipeline-step">🏆 EVALUATION</div>
+                </div>
+
+                <h3>💥 FIVE PHASES OF AWESOME 💥</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h4>PHASE A: Data Collection 🎯</h4>
+                        <p style="font-size: 1.1em;">UniProt API INTEGRATION! Fetching VERIFIED signal peptides and controls! 🚀</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>PHASE B: Preprocessing ⚙️</h4>
+                        <p style="font-size: 1.1em;">MMseqs2 CLUSTERING! Remove redundancy! Create BALANCED splits! 🎲</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>PHASE C: Analysis 📊</h4>
+                        <p style="font-size: 1.1em;">EXPLORATORY DATA ANALYSIS! Visualize EVERYTHING! 📈🎨</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>PHASE D: Von Heijne 🎓</h4>
+                        <p style="font-size: 1.1em;">CLASSIC statistical approach! Position-specific weight matrices! 📐</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>PHASE E: SVM 🤖</h4>
+                        <p style="font-size: 1.1em;">ADVANCED machine learning! Feature engineering MASTERY! 💪</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="data">
+                <h2>📊 DATASET MEGA-STATS 📊</h2>
+
+                <div class="stats-row">
+                    <div class="stat-box">
+                        <span class="stat-number">10,027</span>
+                        <span class="stat-label">🔥 TOTAL SEQUENCES 🔥</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">1,093</span>
+                        <span class="stat-label">✅ POSITIVE (SP+) ✅</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">8,934</span>
+                        <span class="stat-label">❌ NEGATIVE (SP-) ❌</span>
+                    </div>
+                </div>
+
+                <h3>🎲 DATA SPLIT BREAKDOWN 🎲</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>SET</th>
+                            <th>NEGATIVE</th>
+                            <th>POSITIVE</th>
+                            <th>TOTAL</th>
+                            <th>PERCENTAGE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>🏋️ TRAINING</strong></td>
+                            <td>7,147</td>
+                            <td>874</td>
+                            <td>8,021</td>
+                            <td class="metric-best">80%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🎯 TEST</strong></td>
+                            <td>1,787</td>
+                            <td>219</td>
+                            <td>2,006</td>
+                            <td class="metric-best">20%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight-box">
+                    <h4>🔥 QUALITY CONTROL IS INSANE! 🔥</h4>
+                    <p style="font-size: 1.2em; line-height: 1.8;"><strong>POSITIVE DATASET:</strong> EXPERIMENTALLY VERIFIED signal peptides! Evidence level 1! SwissProt reviewed! NO FRAGMENTS! Minimum 40 amino acids! 💎</p>
+                    <p style="font-size: 1.2em; line-height: 1.8;"><strong>NEGATIVE DATASET:</strong> Cytosolic, nuclear, or organellar proteins! NO signal peptide annotations! TRUE NEGATIVES GUARANTEED! ✨</p>
+                </div>
+            </section>
+
+            <section id="methods">
+                <h2>🔬 METHODOLOGY MADNESS 🔬</h2>
+
+                <h3>🎓 VON HEIJNE ALGORITHM 🎓</h3>
+                <div class="highlight-box">
+                    <h4>⚡ ALGORITHM STEPS - CLASSIC POWER! ⚡</h4>
+                    <ol style="line-height: 2.5; margin-left: 30px; font-size: 1.1em;">
+                        <li>🎯 Extract [-13, +2] windows around cleavage sites!</li>
+                        <li>📊 Build position-specific probability matrix with pseudocounts!</li>
+                        <li>🧮 Compute log-odds weight matrix against background!</li>
+                        <li>🔍 Scan N-terminus (first 90 residues) with sliding window!</li>
+                        <li>💥 Maximum score = PREDICTION POWER!</li>
+                    </ol>
+                </div>
+
+                <h3>🤖 SUPPORT VECTOR MACHINE - THE CHAMPION! 🤖</h3>
+                
+                <h4>🎨 FEATURE SET - 26 FEATURES OF FURY! 🎨</h4>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h4>🧬 Amino Acid Composition</h4>
+                        <p style="font-size: 1.1em;">Frequency of ALL 20 STANDARD amino acids in the N-terminal region! First 22 residues! 🔬</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>⚡ Physicochemical Properties</h4>
+                        <ul style="margin-left: 20px; margin-top: 15px; font-size: 1.1em; line-height: 1.8;">
+                            <li>💧 n-region CHARGE!</li>
+                            <li>🌊 h-region HYDROPHOBICITY!</li>
+                            <li>🧪 h-region TM PROPENSITY!</li>
+                            <li>💪 Total HYDROPHOBICITY!</li>
+                            <li>🎯 Total TM PROPENSITY!</li>
+                            <li>🌀 α-helix PROPENSITY!</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>🎯 MODEL OPTIMIZATION - TUNED TO PERFECTION! 🎯</h4>
+                    <p style="font-size: 1.2em; line-height: 1.8;"><strong>⚙️ Feature Scaling:</strong> StandardScaler NORMALIZATION!</p>
+                    <p style="font-size: 1.2em; line-height: 1.8;"><strong>🌲 Feature Selection:</strong> Random Forest importance ranking with 150 TREES!</p>
+                    <p style="font-size: 1.2em; line-height: 1.8;"><strong>🔥 Hyperparameter Tuning:</strong> 5-fold GridSearchCV - EXHAUSTIVE SEARCH!</p>
+                    <p style="font-size: 1.2em; line-height: 1.8;"><strong>🏆 BEST CONFIG:</strong> RBF kernel, C=10, γ=0.1 - ABSOLUTE PERFECTION! ✨</p>
+                </div>
+            </section>
+
+            <section id="results">
+                <h2>🏆 RESULTS - BOOM! 🏆</h2>
+
+                <h3>⚔️ MODEL SHOWDOWN - ULTIMATE COMPARISON! ⚔️</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>METRIC</th>
+                            <th>VON HEIJNE</th>
+                            <th>SVM</th>
+                            <th>WINNER</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>📊 OVERALL ACCURACY</strong></td>
+                            <td>0.94</td>
+                            <td class="metric-best">0.97 🔥</td>
+                            <td>🏆 SVM</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🎯 F1 SCORE (Positive)</strong></td>
+                            <td>0.71</td>
+                            <td class="metric-best">0.86 💥</td>
+                            <td>🏆 SVM</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🎪 PRECISION (Positive)</strong></td>
+                            <td>0.72</td>
+                            <td class="metric-best">0.87 ⚡</td>
+                            <td>🏆 SVM</td>
+                        </tr>
+                        <tr>
+                            <td><strong>📈 RECALL (Positive)</strong></td>
+                            <td>0.70</td>
+                            <td class="metric-best">0.85 🚀</td>
+                            <td>🏆 SVM</td>
+                        </tr>
+                        <tr>
+                            <td><strong>💎 MATTHEWS CORRELATION</strong></td>
+                            <td>0.694</td>
+                            <td class="metric-best">0.847 ✨</td>
+                            <td>🏆 SVM</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🌟 ROC AUC</strong></td>
+                            <td>-</td>
+                            <td class="metric-best">0.98

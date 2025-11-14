@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signal Peptide Detection - Machine Learning Pipeline Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+        
+        .team-info {
+            background-color: rgba(255,255,255,0.1);
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .team-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .team-info p {
+            font-size: 0.95rem;
+        }
+        
+        nav {
+            background-color: #2c3e50;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #667eea;
+        }
+        
+        main {
+            padding: 3rem 2rem;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+        }
+        
+        h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        h3 {
+            color: #764ba2;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        h4 {
+            color: #555;
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        
+        .info-card {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background-color: #667eea;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 0.875rem 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        code {
+            background-color: #f4f4f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        
+        pre code {
+            background-color: transparent;
+            color: #f8f8f2;
+            padding: 0;
+        }
+        
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .metric-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .metric-card h4 {
+            color: #667eea;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #764ba2;
+        }
+        
+        .pipeline-flow {
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .pipeline-steps {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .pipeline-step {
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .pipeline-arrow {
+            font-size: 1.5rem;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: #667eea;
+            color: white;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            main {
+                padding: 2rem 1rem;
+            }
+            
+            .metric-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Signal Peptide Detection</h1>
+            <p>Machine Learning Pipeline for Eukaryotic Protein Classification</p>
+            <div class="team-info">
+                <h3>Team 10</h3>
+                <p><strong>Team Members:</strong> Andrea Arriola Gamboa, Kristina Djikic, Başak Akkoyun, Betül Yalçın, Deniz Ertuğrul</p>
+                <p><strong>Institution:</strong> University of Bologna - Bioinformatics Master's Program</p>
+                <p><strong>Course:</strong> Laboratory of Bioinformatics 2</p>
+            </div>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#data-collection">Data Collection</a></li>
+                <li><a href="#preprocessing">Preprocessing</a></li>
+                <li><a href="#analysis">Data Analysis</a></li>
+                <li><a href="#vonheijne">Von Heijne Model</a></li>
+                <li><a href="#svm">SVM Model</a></li>
+                <li><a href="#comparison">Model Comparison</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <section id="overview">
+                <h2>Project Overview</h2>
+                
+                <div class="highlight-box">
+                    <h3>What are Signal Peptides?</h3>
+                    <p>Signal peptides are short amino acid sequences (typically 14-30 residues) located at the N-terminus of many eukaryotic proteins. They direct nascent proteins to the endoplasmic reticulum for secretion or membrane insertion, and are cleaved off during translocation.</p>
+                </div>
+                
+                <h3>Biological Significance</h3>
+                <p>Accurately predicting signal peptides is crucial for:</p>
+                <ul>
+                    <li><strong>Understanding protein localization:</strong> Determining where proteins function within the cell</li>
+                    <li><strong>Characterizing secretome composition:</strong> Identifying proteins destined for secretion</li>
+                    <li><strong>Identifying therapeutic targets:</strong> Finding potential drug targets in secreted proteins</li>
+                    <li><strong>Distinguishing protein types:</strong> Separating transmembrane proteins from secreted proteins</li>
+                </ul>
+                
+                <h3>Project Goals</h3>
+                <div class="info-card">
+                    <ol>
+                        <li>Develop a comprehensive dataset of positive (proteins with experimentally verified signal peptides) and negative (proteins without signal peptides) examples</li>
+                        <li>Apply multiple machine learning approaches to signal peptide classification</li>
+                        <li>Compare performance, particularly on challenging cases like transmembrane proteins</li>
+                        <li>Create generalizable models for broad eukaryotic protein families</li>
+                    </ol>
+                </div>
+                
+                <h3>Pipeline Architecture</h3>
+                <div class="pipeline-flow">
+                    <div class="pipeline-steps">
+                        <div class="pipeline-step">
+                            <div>📊 Data Collection</div>
+                        </div>
+                        <div class="pipeline-arrow">→</div>
+                        <div class="pipeline-step">
+                            <div>🔄 Preprocessing</div>
+                        </div>
+                        <div class="pipeline-arrow">→</div>
+                        <div class="pipeline-step">
+                            <div>📈 Analysis</div>
+                        </div>
+                        <div class="pipeline-arrow">→</div>
+                        <div class="pipeline-step">
+                            <div>🤖 Model Training</div>
+                        </div>
+                        <div class="pipeline-arrow">→</div>
+                        <div class="pipeline-step">
+                            <div>✅ Evaluation</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="data-collection">
+                <h2>Phase A: Data Collection</h2>
+                
+                <p>Raw protein data was fetched from UniProtKB using carefully designed queries to ensure high-quality positive and negative datasets.</p>
+                
+                <h3>Data Collection Strategy</h3>
+                
+                <h4>Positive Dataset (Proteins with Signal Peptides)</h4>
+                <div class="info-card">
+                    <p><strong>Criteria:</strong></p>
+                    <ul>
+                        <li>Eukaryotic proteins only (taxonomy_id:2759)</li>
+                        <li>Minimum length: 40 residues</li>
+                        <li>Reviewed entries only (SwissProt)</li>
+                        <li>Experimental signal peptide evidence</li>
+                        <li>No fragments</li>
+                        <li>Additional filtering: Signal peptide ≥ 14 residues and cleaved</li>
+                    </ul>
+                    <p><strong>UniProt Query:</strong></p>
+                    <code>(fragment:false) AND (taxonomy_id:2759) AND (length:[40 TO *]) AND (reviewed:true) AND (existence:1) AND (ft_signal_exp:*)</code>
+                </div>
+                
+                <h4>Negative Dataset (Proteins without Signal Peptides)</h4>
+                <div class="info-card">
+                    <p><strong>Criteria:</strong></p>
+                    <ul>
+                        <li>Eukaryotic proteins only</li>
+                        <li>Minimum length: 40 residues</li>
+                        <li>Reviewed entries only</li>
+                        <li>Experimentally verified cellular localization (cytosol, nucleus, mitochondrion, plastid, peroxisome, cell membrane)</li>
+                        <li>No signal peptides (any evidence)</li>
+                    </ul>
+                </div>
+                
+                <h3>Dataset Statistics</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dataset</th>
+                            <th>Number of Proteins</th>
+                            <th>Metazoa</th>
+                            <th>Plants</th>
+                            <th>Fungi</th>
+                            <th>Other</th>
+                            <th>Proteins with TM Helices</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Positive</strong></td>
+                            <td>2,932</td>
+                            <td>2,420 (82.5%)</td>
+                            <td>311 (10.6%)</td>
+                            <td>165 (5.6%)</td>
+                            <td>36 (1.2%)</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Negative</strong></td>
+                            <td>20,615</td>
+                            <td>12,419 (60.2%)</td>
+                            <td>4,111 (19.9%)</td>
+                            <td>3,727 (18.1%)</td>
+                            <td>358 (1.7%)</td>
+                            <td>2,477</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Implementation Details</h3>
+                <p>The <code>dataset_gathering.py</code> script implements:</p>
+                <ul>
+                    <li><strong>Robust API client:</strong> Retry logic for handling server errors</li>
+                    <li><strong>Pagination handling:</strong> For processing large search results</li>
+                    <li><strong>Quality control:</strong> Advanced filtering criteria</li>
+                    <li><strong>Dual output format:</strong> TSV files (metadata) and FASTA files (sequences)</li>
+                </ul>
+                
+                <h3>Output Files</h3>
+                <ul>
+                    <li><code>positive_dataset_sp_cleavage.tsv</code> / <code>.fasta</code></li>
+                    <li><code>negative_dataset.tsv</code> / <code>.fasta</code></li>
+                </ul>
+            </section>
+            
+            <section id="preprocessing">
+                <h2>Phase B: Data Preprocessing & Clustering</h2>
+                
+                <p>To eliminate sequence redundancy and ensure model generalization, MMseqs2 clustering was performed followed by careful data splitting.</p>
+                
+                <h3>Preprocessing Pipeline</h3>
+                
+                <div class="info-card">
+                    <h4>Step 1: MMseqs2 Clustering</h4>
+                    <p>Clustering was performed on VM infrastructure to reduce sequence redundancy:</p>
+                    <pre><code>mmseqs easy-cluster input.fa cluster-results tmp \
+  --min-seq-id 0.3 -c 0.4 --cov-mode 0 --cluster-mode 1</code></pre>
+                    <ul>
+                        <li>30% minimum sequence identity threshold</li>
+                        <li>40% coverage requirement</li>
+                        <li>Reduces 23,547 → 10,027 sequences</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>Step 2: Representative Selection</h4>
+                    <p>From each cluster, the representative sequence (highest similarity to all members) was selected:</p>
+                    <ul>
+                        <li><strong>Final positive dataset:</strong> 1,093 sequences</li>
+                        <li><strong>Final negative dataset:</strong> 8,934 sequences</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>Step 3: Train/Test Split</h4>
+                    <p>Stratified split to maintain class balance:</p>
+                    <ul>
+                        <li>80% training set</li>
+                        <li>20% test set</li>
+                        <li>Labels: 1 for positive, 0 for negative</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>Step 4: Cross-Validation Preparation</h4>
+                    <p>Training data divided into 5 folds for cross-validation:</p>
+                    <ul>
+                        <li>Stratified k-fold ensures similar class ratios</li>
+                        <li>Used for hyperparameter tuning</li>
+                    </ul>
+                </div>
+                
+                <h3>Final Dataset Summary</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dataset</th>
+                            <th>Negative</th>
+                            <th>Positive</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Training</strong></td>
+                            <td>7,147</td>
+                            <td>874</td>
+                            <td>8,021</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Test</strong></td>
+                            <td>1,787</td>
+                            <td>219</td>
+                            <td>2,006</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total</strong></td>
+                            <td>8,934</td>
+                            <td>1,093</td>
+                            <td>10,027</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Output Files</h3>
+                <ul>
+                    <li><code>merged_dataset.tsv</code> - Combined training and test data</li>
+                    <li><code>merged_dataset_with_seqs.tsv</code> - Dataset with sequences included</li>
+                </ul>
+            </section>
+            
+            <section id="analysis">
+                <h2>Phase C: Exploratory Data Analysis</h2>
+                
+                <p>Comprehensive analysis was performed to characterize dataset properties and ensure consistency between training and test sets.</p>
+                
+                <h3>Analyses Performed</h3>
+                
+                <div class="info-card">
+                    <h4>1. Protein Length Distributions</h4>
+                    <p>Comparison of sequence lengths between positive and negative datasets:</p>
+                    <ul>
+                        <li><strong>Positive sequences:</strong> Median ~300 amino acids</li>
+                        <li><strong>Negative sequences:</strong> Median ~450 amino acids</li>
+                        <li><strong>Key finding:</strong> Negative sequences are significantly longer</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>2. Signal Peptide Length Analysis</h4>
+                    <p>Distribution of cleavage site positions:</p>
+                    <ul>
+                        <li>Most signal peptides: 14-30 residues (typical biological range)</li>
+                        <li>Consistent distribution between train and test sets</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>3. Amino Acid Composition</h4>
+                    <p>Signal peptide sequences compared against SwissProt background:</p>
+                    <ul>
+                        <li><strong>Enriched:</strong> Small hydrophobic amino acids (Ala, Val, Leu)</li>
+                        <li><strong>Depleted:</strong> Charged residues (Arg, Asp, Glu)</li>
+                        <li>Reflects biological function: hydrophobic core for membrane insertion</li>
+                    </ul>
+                </div>
+                
+                <h3>Taxonomic Distribution</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kingdom</th>
+                            <th>Training Set (%)</th>
+                            <th>Test Set (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Metazoa</td>
+                            <td>55.4%</td>
+                            <td>55.9%</td>
+                        </tr>
+                        <tr>
+                            <td>Fungi</td>
+                            <td>25.7%</td>
+                            <td>25.5%</td>
+                        </tr>
+                        <tr>
+                            <td>Plants</td>
+                            <td>17.0%</td>
+                            <td>16.6%</td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td>2.0%</td>
+                            <td>1.9%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="info-card">
+                    <h4>4. Cleavage Site Motifs</h4>
+                    <p>Sequence logo analysis of [-13, +2] windows around cleavage sites:</p>
+                    <ul>
+                        <li>Reveals conserved patterns in signal peptide structure</li>
+                        <li>Visualizes amino acid preferences at each position</li>
+                        <li>Confirms biological understanding of cleavage site characteristics</li>
+                    </ul>
+                </div>
+                
+                <h3>Key Finding</h3>
+                <div class="highlight-box">
+                    <p><strong>Training and test sets show consistent distributions across all analyzed metrics</strong>, confirming that the data split is representative and models can be reliably evaluated on the test set.</p>
+                </div>
+            </section>
+            
+            <section id="vonheijne">
+                <h2>Phase D: Von Heijne Algorithm</h2>
+                
+                <p>The von Heijne method is a traditional statistical approach for signal peptide prediction based on position-specific weight matrices (PSWM).</p>
+                
+                <h3>Algorithm Overview</h3>
+                
+                <div class="info-card">
+                    <h4>Methodology</h4>
+                    <ol>
+                        <li><strong>Extract Training Motifs:</strong> [-13, +2] windows from positive training proteins at cleavage sites</li>
+                        <li><strong>Build Position-Specific Probability Matrix (PSPM):</strong> Calculate amino acid frequencies at each position</li>
+                        <li><strong>Compute Weight Matrix (PSWM):</strong> Log-odds scores comparing to background frequencies</li>
+                        <li><strong>Scan N-terminus:</strong> Score all 16-residue windows in the first 90 amino acids</li>
+                        <li><strong>Predict:</strong> Maximum score determines if protein has a signal peptide</li>
+                        <li><strong>Threshold Optimization:</strong> F1-score maximization via Precision-Recall curve (optimal ≈ 6.73)</li>
+                    </ol>
+                </div>
+                
+                <h3>Mathematical Framework</h3>
+                <div class="info-card">
+                    <p><strong>Position-Specific Probability Matrix:</strong></p>
+                    <p style="text-align: center; margin: 1rem 0;">
+                        PSPM[aa][pos] = (count[aa] + pseudocount) / (total + background)
+                    </p>
+                    
+                    <p><strong>Position-Specific Weight Matrix:</strong></p>
+                    <p style="text-align: center; margin: 1rem 0;">
+                        PSWM[aa][pos] = log(PSPM[aa][pos] / background_freq[aa])
+                    </p>
+                </div>
+                
+                <h3>Cross-Validation Results</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Mean ± Standard Error</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>F1 Score</strong></td>
+                            <td>0.724 ± 0.016</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Precision</strong></td>
+                            <td>0.750 ± 0.014</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Recall</strong></td>
+                            <td>0.706 ± 0.035</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MCC</strong></td>
+                            <td>0.694 ± 0.016</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Optimal Threshold</strong></td>
+                            <td>6.731 ± 0.157</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Model Interpretation</h3>
+                <p>The PSWM heatmap visualization reveals:</p>
+                <ul>
+                    <li><strong>Green cells:</strong> High probability of specific amino acids at that position</li>
+                    <li><strong>Red cells:</strong> Low probability</li>
+                    <li>Clear patterns showing hydrophobic core region and cleavage site preferences</li>
+                </ul>
+                
+                <h3>Output Files</h3>
+                <ul>
+                    <li><code>averaged_precision_recall_curve.png</code> - Threshold optimization visualization</li>
+                    <li><code>pswm_heatmap.png</code> - Position-specific weight matrix visualization</li>
+                    <li><code>cross_validation_results.txt</code> - Detailed CV metrics</li>
+                </ul>
+            </section>
+            
+            <section id="svm">
+                <h2>Phase E: Support Vector Machine</h2>
+                
+                <p>Advanced machine learning approach using Support Vector Machines with engineered biochemical features.</p>
+                
+                <h3>Feature Engineering</h3>
+                <p>A total of 26 features were engineered from the N-terminal region (first 22 residues):</p>
+                
+                <div class="info-card">
+                    <h4>Amino Acid Composition (20 features)</h4>
+                    <p>Frequency of each standard amino acid in the N-terminal region</p>
+                </div>
+                
+                <div class="info-card">
+                    <h4>Physicochemical Properties (6 features)</h4>
+                    <ul>
+                        <li><strong>n-region charge:</strong> Charge in first 5 residues</li>
+                        <li><strong>h-region hydrophobicity:</strong> Hydrophobicity in residues 5-16</li>
+                        <li><strong>h-region TM propensity:</strong> Transmembrane propensity in residues 5-16</li>
+                        <li><strong>Total N-terminal hydrophobicity</strong></li>
+                        <li><strong>Total N-terminal TM propensity</strong></li>
+                        <li><strong>Total N-terminal α-helix propensity</strong></li>
+                    </ul>
+                </div>
+                
+                <h3>Feature Selection</h3>
+                <p>Random Forest-based feature importance ranking identified top predictive features:</p>
+                <ul>
+                    <li><strong>Top 1-2:</strong> Hydrophobicity and TM propensity measures</li>
+                    <li><strong>Selected:</strong> Top 15 features for final model</li>
+                    <li><strong>Validation:</strong> MCC plateaus around 10-15 features, confirming optimal selection</li>
+                </ul>
+                
+                <h3>Model Training Pipeline</h3>
+                <ol>
+                    <li><strong>Feature Scaling:</strong> StandardScaler fit on training data</li>
+                    <li><strong>Hyperparameter Optimization:</strong> GridSearchCV with 5-fold cross-validation
+                        <ul>
+                            <li>Kernels tested: linear, RBF, polynomial</li>
+                            <li>C values: [0.1, 1, 10, 100]</li>
+                            <li>Gamma: ['scale', 'auto', 0.01, 0.1]</li>
+                            <li>Scoring metric: F1-score</li>
+                        </ul>
+                    </li>
+                    <li><strong>Best Parameters:</strong>
+                        <ul>
+                            <li>Kernel: <strong>RBF</strong></li>
+                            <li>C: <strong>10</strong></li>
+                            <li>Gamma: <strong>0.1</strong></li>
+                        </ul>
+                    </li>
+                </ol>
+                
+                <h3>Test Set Performance</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>Precision</th>
+                            <th>Recall</th>
+                            <th>F1-Score</th>
+                            <th>Support</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Negative (0)</td>
+                            <td>0.98</td>
+                            <td>0.98</td>
+                            <td>0.98</td>
+                            <td>1,787</td>
+                        </tr>
+                        <tr>
+                            <td>Positive (1)</td>
+                            <td>0.87</td>
+                            <td>0.85</td>
+                            <td>0.86</td>
+                            <td>219</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <h4>Overall Accuracy</h4>
+                        <div class="metric-value">0.97</div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Matthews Correlation Coefficient</h4>
+                        <div class="metric-value">0.847</div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>ROC AUC</h4>
+                        <div class="metric-value">0.98</div>
+                    </div>
+                </div>
+                
+                <h3>Transmembrane Protein Analysis</h3>
+                <div class="highlight-box">
+                    <p>A critical challenge is distinguishing signal peptides from transmembrane (TM) helices:</p>
+                    <ul>
+                        <li>TM negatives in test set: <strong>165</strong></li>
+                        <li>False positives: <strong>21 / 165</strong></li>
+                        <li><strong>False Positive Rate: 0.127</strong></li>
+                    </ul>
+                    <p>This represents a significant improvement over the von Heijne model (FPR: 0.206)</p>
+                </div>
+                
+                <h3>Key Insights</h3>
+                <ul>
+                    <li><strong>Feature Importance:</strong> Hydrophobicity and TM propensity are top predictors, confirming biological understanding</li>
+                    <li><strong>Learning Curve:</strong> Training and validation scores converge, indicating robust model with good generalization</li>
+                    <li><strong>Validation Curve:</strong> C=10 provides optimal balance, avoiding both underfitting and overfitting</li>
+                </ul>
+                
+                <h3>Output Files</h3>
+                <ul>
+                    <li><code>svm_signal_peptide_model.joblib</code> - Trained SVM model</li>
+                    <li><code>feature_scaler.joblib</code> - Fitted StandardScaler</li>
+                    <li><code>best_svm_params.json</code> - Optimal hyperparameters</li>
+                    <li>Multiple visualization plots: confusion matrix, ROC curve, PR curve, feature importance, learning curves</li>
+                </ul>
+            </section>
+            
+            <section id="comparison">
+                <h2>Model Comparison</h2>
+                
+                <p>Comprehensive comparison between the traditional von Heijne method and the modern SVM approach.</p>
+                
+                <h3>Overall Performance Metrics</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Von Heijne</th>
+                            <th>SVM</th>
+                            <th>Winner</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Overall Accuracy</strong></td>
+                            <td>0.94</td>
+                            <td>0.97</td>
+                            <td><span class="badge">SVM</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>F1 Score (Positive)</strong></td>
+                            <td>0.71</td>
+                            <td>0.86</td>
+                            <td><span class="badge">SVM</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Precision (Positive)</strong></td>
+                            <td>0.72</td>
+                            <td>0.87</td>
+                            <td><span class="badge">SVM</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Recall (Positive)</strong></td>
+                            <td>0.70</td>
+                            <td>0.85</td>
+                            <td><span class="badge">SVM</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Matthews Correlation Coefficient</strong></td>
+                            <td>0.694</td>
+                            <td>0.847</td>
+                            <td><span class="badge">SVM</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Transmembrane Protein Challenge</h3>
+                <p>The most significant test: distinguishing signal peptides from TM helices (both are hydrophobic N-terminal sequences).</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Von Heijne</th>
+                            <th>SVM</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Standard FPR (Overall)</strong></td>
+                            <td>0.0330</td>
+                            <td>0.0151</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FPR on TM Proteins</strong></td>
+                            <td>0.2061</td>
+                            <td>0.1273</td>
+                        </tr>
+                        <tr>
+                            <td><strong>False Positives from TM Subset</strong></td>
+                            <td>34 / 165</td>
+                            <td>21 / 165</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="highlight-box">
+                    <h4>Key Finding</h4>
+                    <p>The <strong>SVM model significantly outperforms</strong> the von Heijne method on transmembrane proteins, with 38% fewer false positives. This demonstrates that the engineered features and non-linear decision boundary better capture the subtle differences between signal peptides and TM helices.</p>
+                </div>
+                
+                <h3>Error Analysis: Physicochemical Properties</h3>
+                
+                <h4>SVM Model: Misclassification Patterns</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prediction Outcome</th>
+                            <th>Avg. n-region Charge</th>
+                            <th>Avg. h-region Hydrophobicity</th>
+                            <th>Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>True Positives</td>
+                            <td>0.545</td>
+                            <td><strong>2.183</strong></td>
+                            <td>187</td>
+                        </tr>
+                        <tr>
+                            <td>False Negatives</td>
+                            <td>0.219</td>
+                            <td><strong>0.330</strong></td>
+                            <td>32</td>
+                        </tr>
+                        <tr>
+                            <td>True Negatives</td>
+                            <td>-0.005</td>
+                            <td><strong>-0.478</strong></td>
+                            <td>1,760</td>
+                        </tr>
+                        <tr>
+                            <td>False Positives</td>
+                            <td>0.407</td>
+                            <td><strong>2.044</strong></td>
+                            <td>27</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="info-card">
+                    <h4>SVM Error Insights</h4>
+                    <ul>
+                        <li><strong>False Positives:</strong> Have extremely high hydrophobicity (2.044), nearly identical to true positives (2.183). The model is confused by sequences that strongly mimic a signal peptide's hydrophobic core.</li>
+                        <li><strong>False Negatives:</strong> Have unusually low hydrophobicity (0.330), making them atypical signal peptides that the model misses.</li>
+                    </ul>
+                </div>
+                
+                <h4>Von Heijne Model: Misclassification Patterns</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prediction Outcome</th>
+                            <th>Avg. n-region Charge</th>
+                            <th>Avg. h-region Hydrophobicity</th>
+                            <th>Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>True Positives</td>
+                            <td>0.481</td>
+                            <td><strong>1.969</strong></td>
+                            <td>154</td>
+                        </tr>
+                        <tr>
+                            <td>False Negatives</td>
+                            <td>0.538</td>
+                            <td><strong>1.778</strong></td>
+                            <td>65</td>
+                        </tr>
+                        <tr>
+                            <td>True Negatives</td>
+                            <td>0.000</td>
+                            <td><strong>-0.459</strong></td>
+                            <td>1,728</td>
+                        </tr>
+                        <tr>
+                            <td>False Positives</td>
+                            <td>0.034</td>
+                            <td><strong>0.120</strong></td>
+                            <td>59</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="info-card">
+                    <h4>Von Heijne Error Insights</h4>
+                    <ul>
+                        <li><strong>False Positives:</strong> Have only slightly elevated hydrophobicity (0.120). Errors are caused by subtle sequence patterns rather than just high hydrophobicity.</li>
+                        <li><strong>False Negatives:</strong> Larger number of misses (65 vs 32 for SVM) with hydrophobicity only slightly lower than true positives (1.778 vs 1.969).</li>
+                    </ul>
+                </div>
+                
+                <h3>Summary of Findings</h3>
+                
+                <div class="highlight-box">
+                    <h4>Model Strengths</h4>
+                    
+                    <p><strong>Von Heijne Algorithm:</strong></p>
+                    <ul>
+                        <li>Simple and interpretable position-based model</li>
+                        <li>Good baseline performance (94% accuracy)</li>
+                        <li>Fast prediction with no training required beyond PSWM calculation</li>
+                        <li>Useful as reference method and for understanding biological patterns</li>
+                    </ul>
+                    
+                    <p><strong>Support Vector Machine:</strong></p>
+                    <ul>
+                        <li>Superior overall performance (97% accuracy, MCC: 0.847)</li>
+                        <li>Better handling of transmembrane proteins (38% fewer false positives)</li>
+                        <li>Robust feature engineering captures complex physicochemical patterns</li>
+                        <li>Non-linear decision boundary (RBF kernel) models subtle distinctions</li>
+                        <li>Fast training and prediction with interpretable features</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>Biological Validation</h4>
+                    <p>Both models confirm biological understanding:</p>
+                    <ul>
+                        <li><strong>Hydrophobicity</strong> is the most critical feature for signal peptide recognition</li>
+                        <li><strong>TM propensity</strong> helps distinguish signal peptides from membrane anchors</li>
+                        <li><strong>Charged n-region</strong> provides additional discriminative power</li>
+                        <li>Feature importance rankings align with known signal peptide structure (n-region, h-region, c-region)</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p><strong>Signal Peptide Detection Project</strong></p>
+            <p>Team 10 - Laboratory of Bioinformatics 2</p>
+            <p>University of Bologna - Bioinformatics Master's Program</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">© 2024 | Made with dedication to advancing computational biology</p>
+        </footer>
+    </div>
+</body>
+</html>
