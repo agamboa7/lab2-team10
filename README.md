@@ -1,5 +1,3 @@
-Of course. Here is the updated README with all deep learning-related content removed:
-
 # lab2-team10
 This repository contains material relevant to the Laboratory of Bioinformatics 2 course, which is part of the Bioinformatics Master's Degree at the University of Bologna.
 
